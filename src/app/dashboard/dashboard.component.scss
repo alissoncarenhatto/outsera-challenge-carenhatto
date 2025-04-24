@@ -1,0 +1,27 @@
+.dashboard-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 16px;
+}
+  
+.h5-panel {
+  margin: 10px 0;
+}
+  
+.filter-row {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 16px;
+
+  input {
+    flex: 1;
+    padding: 8px;
+  }
+  button {
+      padding: 8px 12px;
+      cursor: pointer;
+      background: #0079d8;
+      border-radius: 2px;
+      border: none;
+  }
+}

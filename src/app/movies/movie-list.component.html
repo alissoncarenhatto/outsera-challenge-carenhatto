@@ -1,0 +1,13 @@
+<div class="container-main">
+  <h2>List Movies</h2>
+
+  <a-table
+  [columns]="columns"
+  [data]="movies"
+  [total]="total"
+  [pageIndex]="pageIndex"
+  [pageSize]="pageSize"
+  (filterChange)="applyFilters($event)"
+  (pageChange)="onPageChangeCustom($event)"
+></a-table>
+</div>

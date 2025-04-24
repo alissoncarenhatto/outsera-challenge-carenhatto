@@ -1,0 +1,94 @@
+<div class="dashboard-grid">
+  <div>
+    <section class="container-main">
+      <h3>List years with multiple winners</h3>
+      <a-table
+        [columns]="[
+          { key: 'year',        label: 'Year' },
+          { key: 'winnerCount', label: 'Win Count' }
+        ]"
+        [data]="yearsMultiple"
+        [total]="yearsMultiple.length"
+        [pageIndex]="0"
+        [pageSize]="yearsMultiple.length"
+        [showPagination]="false"
+      ></a-table>
+    </section>
+
+    <section class="container-main">
+      <h3>Producers with longest and shortest interval between wins</h3>
+  
+      <h5 class="h5-panel">Maximum</h5>
+      <a-table
+        [columns]="[
+          { key: 'producer',    label: 'Producer' },
+          { key: 'interval',    label: 'Interval' },
+          { key: 'previousWin', label: 'Previous Year' },
+          { key: 'followingWin', label: 'Following' }
+        ]"
+        [data]="producersMax"
+        [total]="producersMax.length"
+        [pageIndex]="0"
+        [pageSize]="producersMax.length"
+        [showPagination]="false"
+      ></a-table>
+  
+      <h5 class="h5-panel">Minimum</h5>
+      <a-table
+        [columns]="[
+          { key: 'producer',    label: 'Producer' },
+          { key: 'interval',    label: 'Interval' },
+          { key: 'previousWin', label: 'Previous Year' },
+          { key: 'followingWin', label: 'Following Year' }
+        ]"
+        [data]="producersMin"
+        [total]="producersMin.length"
+        [pageIndex]="0"
+        [pageSize]="producersMin.length"
+        [showPagination]="false"
+      ></a-table>
+    </section>
+  </div>
+
+  <div>
+    <section class="container-main">
+      <h3>Top 3 studios with winners</h3>
+      <a-table
+        [columns]="[
+          { key: 'name',     label: 'Name' },
+          { key: 'winCount', label: 'Win Count' }
+        ]"
+        [data]="studiosCount | slice:0:3"
+        [total]="studiosCount.length"
+        [pageIndex]="0"
+        [pageSize]="3"
+        [showPagination]="false"
+      ></a-table>
+    </section>
+  
+    <section class="container-main">
+      <h3>List movie winners by year</h3>
+      <div class="filter-row">
+        <input
+          type="number"
+          [(ngModel)]="yearSearch"
+          placeholder="Search by year"
+        />
+        <button (click)="searchYear()">🔎</button>
+      </div>
+  
+      <a-table
+        [columns]="[
+          { key: 'id',    label: 'ID' },
+          { key: 'year',  label: 'Year' },
+          { key: 'title', label: 'Title' }
+        ]"
+        [data]="winnersByYear"
+        [total]="winnersByYear.length"
+        [pageIndex]="0"
+        [pageSize]="winnersByYear.length"
+        [showPagination]="false"
+      ></a-table>
+    </section>
+  </div>
+</div>

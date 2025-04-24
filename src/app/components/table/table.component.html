@@ -1,0 +1,67 @@
+<div class="custom-table-wrapper">
+    <table class="custom-table">
+      <thead>
+        <tr>
+          <th *ngFor="let col of columns" 
+          [style.width]="col.width || 'auto'" 
+          [style.text-align]="col.align || 'left'" >
+            {{ col.label }}
+            <ng-container *ngIf="col.isFilter && col.type === 'input'">
+              <input
+                type="text"
+                placeholder="Filter by {{ col.label | lowercase }}"
+                [(ngModel)]="filters[col.key]"
+                (ngModelChange)="onFilterChange(col.key, $event)"
+              />
+            </ng-container>
+            <ng-container *ngIf="col.isFilter && col.type === 'select'">
+              <select
+                [(ngModel)]="filters[col.key]"
+                (ngModelChange)="onFilterChange(col.key, $event)"
+              >
+                <option *ngFor="let opt of col.options" [ngValue]="opt.value">
+                  {{ opt.viewValue }}
+                </option>
+              </select>
+            </ng-container>
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let row of data">
+          <td *ngFor="let col of columns">
+            <ng-container *ngIf="col.key === 'winner'">
+              {{ row.winner ? 'Yes' : 'No' }}
+            </ng-container>
+            <ng-container *ngIf="col.key !== 'winner'">
+              {{ row[col.key] }}
+            </ng-container>
+          </td>
+        </tr>
+        <tr *ngIf="data.length === 0">
+          <td [attr.colspan]="columns.length" class="no-data">
+            No records found.
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  
+    <div class="paginator" *ngIf="showPagination && totalPages > 1">
+        <button (click)="first()" [disabled]="pageIndex === 0">|&lt;</button>
+        <button (click)="prev()"  [disabled]="pageIndex === 0">«</button>
+      
+        <div class="pages-btn">
+            <ng-container *ngFor="let page of pages" >
+                <button
+                  (click)="goTo(page)"
+                  [class.active]="page === pageIndex"
+                >
+                  {{ page + 1 }}
+                </button>
+              </ng-container>
+        </div>
+      
+        <button (click)="next()"  [disabled]="pageIndex + 1 >= totalPages">»</button>
+        <button (click)="last()"  [disabled]="pageIndex + 1 >= totalPages">&gt;|</button>
+      </div>
+  </div>

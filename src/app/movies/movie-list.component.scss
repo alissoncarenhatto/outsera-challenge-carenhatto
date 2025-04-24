@@ -1,0 +1,15 @@
+.filter-card { 
+    display: flex; 
+    align-items: baseline; 
+    gap: 16px; 
+    padding: 16px 0; 
+}
+
+.table-card { 
+    padding: 16px; 
+}
+
+.full-width { 
+    width: 100%;
+    overflow-x: auto; 
+}

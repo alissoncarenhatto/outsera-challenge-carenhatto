@@ -1,0 +1,30 @@
+.sidenav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 200px;
+    height: 100vh;
+    background: #f7f8f9;
+    padding: 0;
+  
+    nav {
+      margin-top: 56px;
+      ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+  
+        li {
+          a {
+            display: block;
+            padding: 16px 24px;
+            color: #90a4ae;
+            text-decoration: none;
+          }
+          &.active a {
+            color: #0078d8;
+          }
+        }
+      }
+    }
+  }
